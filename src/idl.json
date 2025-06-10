@@ -33,7 +33,7 @@
             ]
         },
         {
-            "name": "setValue",
+            "name": "set",
             "accounts": [
                 {
                     "name": "val",

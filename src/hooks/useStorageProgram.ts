@@ -30,6 +30,7 @@ export function useStorageProgram() {
   const saveScore = useCallback(
     async (score: number) => {
       if (!publicKey || !program) return;
+      console.log("Program ID", program.programId.toString());
       setLoading(true);
       try {
         const key = publicKey.toBuffer().readBigUInt64LE(0);
@@ -59,12 +60,9 @@ export function useStorageProgram() {
             .rpc();
         }
 
+        console.log("Calling method", program.methods);
         await program.methods
-          .setValue(
-            new anchor.BN(domain),
-            new anchor.BN(key),
-            new anchor.BN(score)
-          )
+          .set(new anchor.BN(domain), new anchor.BN(key), new anchor.BN(score))
           .accounts({
             val: pda,
           })
