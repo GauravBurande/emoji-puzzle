@@ -18,19 +18,22 @@ export function useStorageProgram() {
   const provider = useMemo(() => {
     if (!anchorWallet) return null;
     return new anchor.AnchorProvider(connection, anchorWallet, {
-      commitment: "processed",
+      commitment: "confirmed",
     });
   }, [anchorWallet]);
 
   const program = useMemo(() => {
     if (!provider) return null;
-    return new anchor.Program(idl as anchor.Idl, PROGRAM_ID, provider);
+    return new anchor.Program(
+      idl as unknown as anchor.Idl,
+      PROGRAM_ID,
+      provider
+    );
   }, [provider]);
 
   const saveScore = useCallback(
     async (score: number) => {
       if (!publicKey || !program) return;
-      console.log("Program ID: ", program.programId.toString());
       setLoading(true);
       try {
         const key = publicKey.toBuffer().readBigUInt64LE(0);
@@ -60,7 +63,6 @@ export function useStorageProgram() {
             .rpc();
         }
 
-        console.log("Calling method", program.methods);
         await program.methods
           .set(new anchor.BN(domain), new anchor.BN(key), new anchor.BN(score))
           .accounts({
