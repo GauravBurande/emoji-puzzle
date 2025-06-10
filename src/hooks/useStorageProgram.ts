@@ -1,8 +1,8 @@
-import * as anchor from "@project-serum/anchor";
+import * as anchor from "@coral-xyz/anchor";
 import { Connection, PublicKey } from "@solana/web3.js";
-import idl from "../idl.json";
 import { useCallback, useState, useMemo } from "react";
 import { useWallet, useAnchorWallet } from "@solana/wallet-adapter-react";
+import { idl } from "./idl";
 
 const PROGRAM_ID = new PublicKey(
   "6ytMmvJR2YYsuPR7FSQUQnb7UGi1rf36BrXzZUNvKsnj"
@@ -24,11 +24,7 @@ export function useStorageProgram() {
 
   const program = useMemo(() => {
     if (!provider) return null;
-    return new anchor.Program(
-      idl as unknown as anchor.Idl,
-      PROGRAM_ID,
-      provider
-    );
+    return new anchor.Program(idl, provider);
   }, [provider]);
 
   const saveScore = useCallback(
@@ -47,7 +43,7 @@ export function useStorageProgram() {
 
         let accountExists = true;
         try {
-          await program.account.val.fetch(pda);
+          await program.provider.connection.getAccountInfo(pda);
         } catch {
           accountExists = false;
         }

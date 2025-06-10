@@ -3,7 +3,7 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { ArrowLeft, Trophy, Medal, Award, Wallpaper } from "lucide-react";
 import { LeaderboardEntry } from "../types/game";
-import * as anchor from "@project-serum/anchor";
+import * as anchor from "@coral-xyz/anchor";
 
 interface LeaderboardProps {
   onBack: () => void;
