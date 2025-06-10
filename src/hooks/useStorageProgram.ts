@@ -17,23 +17,16 @@ export function useStorageProgram() {
   const { publicKey } = useWallet();
   const anchorWallet = useAnchorWallet();
 
-  if (!anchorWallet || !publicKey) {
-    alert("Wallet not connected");
-    return;
-  }
-
   const domain = 1001;
-  const key = publicKey.toBuffer().readBigUInt64LE(0);
+  const key = publicKey?.toBuffer().readBigUInt64LE(0);
 
-  const provider = new anchor.AnchorProvider(connection, anchorWallet, {
+  const provider = new anchor.AnchorProvider(connection, anchorWallet!, {
     commitment: "processed",
   });
   const program = new anchor.Program(idl as anchor.Idl, PROGRAM_ID, provider);
   const saveScore = useCallback(async (score: number) => {
     setLoading(true);
     try {
-      const key = publicKey.toBuffer().readBigUInt64LE(0);
-
       const [pda] = PublicKey.findProgramAddressSync(
         [
           new anchor.BN(domain).toArrayLike(Buffer, "le", 8),
@@ -54,7 +47,7 @@ export function useStorageProgram() {
           .initialize(new anchor.BN(domain), new anchor.BN(key))
           .accounts({
             val: pda,
-            authority: publicKey,
+            authority: publicKey!,
             systemProgram: anchor.web3.SystemProgram.programId,
           })
           .rpc();
@@ -88,7 +81,7 @@ export function useStorageProgram() {
       const [pda] = PublicKey.findProgramAddressSync(
         [
           Buffer.from(new anchor.BN(domain).toArray("le", 8)),
-          Buffer.from(publicKey.toBytes()),
+          Buffer.from(new anchor.BN(key).toArray("le", 8)),
         ],
         PROGRAM_ID
       );
