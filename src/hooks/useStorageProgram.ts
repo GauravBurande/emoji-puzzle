@@ -60,7 +60,11 @@ export function useStorageProgram() {
         }
 
         await program.methods
-          .set(new anchor.BN(domain), new anchor.BN(key), new anchor.BN(score))
+          .setValue(
+            new anchor.BN(domain),
+            new anchor.BN(key),
+            new anchor.BN(score)
+          )
           .accounts({
             val: pda,
           })
