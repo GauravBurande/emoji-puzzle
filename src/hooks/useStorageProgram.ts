@@ -30,7 +30,7 @@ export function useStorageProgram() {
   const saveScore = useCallback(
     async (score: number) => {
       if (!publicKey || !program) return;
-      console.log("Program ID", program.programId.toString());
+      console.log("Program ID: ", program.programId.toString());
       setLoading(true);
       try {
         const key = publicKey.toBuffer().readBigUInt64LE(0);

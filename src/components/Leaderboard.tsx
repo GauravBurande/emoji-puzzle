@@ -97,7 +97,6 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
         ],
         PROGRAM_ID
       );
-      console.log(pda.toBase58());
       if (pubkey === pda.toBase58()) {
         return "You";
       }
