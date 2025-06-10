@@ -1,1 +1,95 @@
-{"version":"0.1.0","name":"mappings","instructions":[{"name":"initialize","accounts":[{"name":"val","isMut":true,"isSigner":false},{"name":"signer","isMut":true,"isSigner":true},{"name":"systemProgram","isMut":false,"isSigner":false}],"args":[{"name":"domain","type":"u64"},{"name":"key","type":"u64"}]},{"name":"set","accounts":[{"name":"val","isMut":true,"isSigner":false}],"args":[{"name":"domain","type":"u64"},{"name":"key","type":"u64"},{"name":"value","type":"u64"}]},{"name":"get","accounts":[{"name":"val","isMut":false,"isSigner":false}],"args":[{"name":"domain","type":"u64"},{"name":"key","type":"u64"}],"returns":"u64"}],"accounts":[{"name":"Val","type":{"kind":"struct","fields":[{"name":"value","type":"u64"}]}}]}
+{
+    "version": "0.1.0",
+    "name": "mappings",
+    "instructions": [
+        {
+            "name": "initialize",
+            "accounts": [
+                {
+                    "name": "val",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "signer",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "domain",
+                    "type": "u64"
+                },
+                {
+                    "name": "key",
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "set",
+            "accounts": [
+                {
+                    "name": "val",
+                    "isMut": true,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "domain",
+                    "type": "u64"
+                },
+                {
+                    "name": "key",
+                    "type": "u64"
+                },
+                {
+                    "name": "value",
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "get",
+            "accounts": [
+                {
+                    "name": "val",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "domain",
+                    "type": "u64"
+                },
+                {
+                    "name": "key",
+                    "type": "u64"
+                }
+            ],
+            "returns": "u64"
+        }
+    ],
+    "accounts": [
+        {
+            "name": "Val",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "value",
+                        "type": "u64"
+                    }
+                ]
+            }
+        }
+    ]
+}
