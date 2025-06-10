@@ -1,78 +1,24 @@
 {
-    "address": "6ytMmvJR2YYsuPR7FSQUQnb7UGi1rf36BrXzZUNvKsnj",
-    "metadata": {
-        "name": "mappings",
-        "version": "0.1.0",
-        "spec": "0.1.0",
-        "description": "Created with Anchor"
-    },
+    "version": "0.1.0",
+    "name": "mappings",
     "instructions": [
         {
-            "name": "get",
-            "discriminator": [
-                161,
-                224,
-                50,
-                61,
-                5,
-                210,
-                122,
-                216
-            ],
-            "accounts": [
-                {
-                    "name": "val"
-                }
-            ],
-            "args": [
-                {
-                    "name": "domain",
-                    "type": "u64"
-                },
-                {
-                    "name": "key",
-                    "type": "u64"
-                }
-            ],
-            "returns": "u64"
-        },
-        {
             "name": "initialize",
-            "discriminator": [
-                175,
-                175,
-                109,
-                31,
-                13,
-                152,
-                155,
-                237
-            ],
             "accounts": [
                 {
                     "name": "val",
-                    "writable": true,
-                    "pda": {
-                        "seeds": [
-                            {
-                                "kind": "arg",
-                                "path": "domain"
-                            },
-                            {
-                                "kind": "arg",
-                                "path": "key"
-                            }
-                        ]
-                    }
+                    "isMut": true,
+                    "isSigner": false
                 },
                 {
                     "name": "signer",
-                    "writable": true,
-                    "signer": true
+                    "isMut": true,
+                    "isSigner": true
                 },
                 {
-                    "name": "system_program",
-                    "address": "11111111111111111111111111111111"
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
                 }
             ],
             "args": [
@@ -88,20 +34,11 @@
         },
         {
             "name": "set",
-            "discriminator": [
-                198,
-                51,
-                53,
-                241,
-                116,
-                29,
-                126,
-                194
-            ],
             "accounts": [
                 {
                     "name": "val",
-                    "writable": true
+                    "isMut": true,
+                    "isSigner": false
                 }
             ],
             "args": [
@@ -118,24 +55,30 @@
                     "type": "u64"
                 }
             ]
+        },
+        {
+            "name": "get",
+            "accounts": [
+                {
+                    "name": "val",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "domain",
+                    "type": "u64"
+                },
+                {
+                    "name": "key",
+                    "type": "u64"
+                }
+            ],
+            "returns": "u64"
         }
     ],
     "accounts": [
-        {
-            "name": "Val",
-            "discriminator": [
-                117,
-                195,
-                162,
-                127,
-                63,
-                84,
-                168,
-                122
-            ]
-        }
-    ],
-    "types": [
         {
             "name": "Val",
             "type": {
