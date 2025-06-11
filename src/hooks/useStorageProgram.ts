@@ -41,9 +41,12 @@ export function useStorageProgram() {
           PROGRAM_ID
         );
 
-        let accountExists = true;
+        let accountExists = false;
         try {
-          await program.provider.connection.getAccountInfo(pda);
+          const account = await program.provider.connection.getAccountInfo(pda);
+          if (account?.owner) {
+            accountExists = true;
+          }
         } catch {
           accountExists = false;
         }
